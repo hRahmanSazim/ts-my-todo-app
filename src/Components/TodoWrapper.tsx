@@ -1,28 +1,9 @@
 import { Container, Group, Text, TextInput, Space } from "@mantine/core";
 import { FormEvent } from "react";
 import { useState } from "react";
-import { v4 as uuid } from "uuid";
 
-export default function Todowrapper(): JSX.Element {
-  const id: string = uuid();
+export default function Todowrapper({ addTodo }): JSX.Element {
   const [value, setValue] = useState("");
-  const [todos, setTodos] = useState<object[]>([]);
-
-  interface Task {
-    task: string;
-    id: string;
-    completed: boolean;
-  }
-
-  const addTodo = (value: string): void => {
-    const todo: Task = {
-      task: value,
-      id: id,
-      completed: false,
-    };
-    const newTodos: object[] = [todo, ...todos];
-    setTodos(newTodos);
-  };
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();

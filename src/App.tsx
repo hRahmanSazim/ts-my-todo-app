@@ -1,12 +1,57 @@
-import { Box } from "@mantine/core";
+import { Box, Flex } from "@mantine/core";
 import TodoWrapper from "./Components/TodoWrapper";
+import { useState } from "react";
+import Todo from "./Components/Todo";
+import { v4 as uuidv4 } from "uuid";
 
-function App() {
+export default function App(): JSX.Element {
+  interface Task {
+    task: string;
+    id: string;
+    completed: boolean;
+  }
+  const id: string = uuidv4();
+
+  const [todos, setTodos] = useState<object[]>([]);
+
+  type myFunction = (id: string) => void;
+  function removeTodo(fn: myFunction) {
+    const updatedTodos = [...todos].filter((todo) => todo.id !== fn.id);
+    setTodos(updatedTodos);
+  }
+
+  const editTodo = (id: string) => {
+    const newtodo = prompt("Enter new todo....");
+    setTodos(
+      todos.map((todo) => (todo.id === id ? { ...todo, task: newtodo } : todo))
+    );
+  };
+
+  const addTodo = (value: string): void => {
+    const todo: Task = {
+      task: value,
+      id: id,
+      completed: false,
+    };
+    const newTodos: object[] = [todo, ...todos];
+    setTodos(newTodos);
+  };
+
   return (
     <Box>
-      <TodoWrapper />
+      <Flex direction="column" gap="xl" color="yellow">
+        <TodoWrapper addTodo={addTodo} />
+        {todos.map((todo) => {
+          return (
+            <Todo
+              todo={todo}
+              key={todo.id}
+              removeTodo={removeTodo}
+              editTodo={editTodo}
+            />
+          );
+        })}
+      </Flex>
     </Box>
   );
 }
-
-export default App;

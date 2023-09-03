@@ -1,20 +1,25 @@
-import { Flex, Button, Container, Space, Group } from "@mantine/core";
+import { Text, Flex, Button, Container, Space } from "@mantine/core";
 
-const Todo = () => {
+const Todo = ({ todo, removeTodo, editTodo }) => {
   return (
     <Flex direction="row">
       <Container>
-        <Flex wrap="wrap"></Flex>
+        <Flex wrap="wrap">
+          <Text>{todo.task}</Text>
+        </Flex>
       </Container>
       <Space h="lg"></Space>
 
       <Container>
-        <Group position="center" spacing="xl">
-          <Button>Edit</Button>
-          <Button>Complete</Button>
+        <Button onClick={() => editTodo(todo.id)} color="violet">
+          edit
+        </Button>
 
-          <Button>Delete</Button>
-        </Group>
+        {/* <TextInput label="Edit Todo" placeholder="New Task..." size="xs" /> */}
+
+        <Button onClick={() => removeTodo(todo.id)} color="red">
+          delete
+        </Button>
       </Container>
     </Flex>
   );
