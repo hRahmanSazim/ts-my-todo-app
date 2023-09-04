@@ -2,8 +2,12 @@ import { Container, Group, Text, TextInput, Space } from "@mantine/core";
 import { FormEvent } from "react";
 import { useState } from "react";
 
-export default function Todowrapper({ addTodo }): JSX.Element {
-  const [value, setValue] = useState("");
+type addFunc = {
+  addTodo: (value: string) => void;
+};
+
+export default function Todowrapper({ addTodo }: addFunc): JSX.Element {
+  const [value, setValue] = useState<string>("");
 
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();

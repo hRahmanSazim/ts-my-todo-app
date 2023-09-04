@@ -22,10 +22,14 @@ export default function App(): JSX.Element {
   };
 
   const editTodo: myFunction = (id) => {
-    const newtodo: string = prompt("Enter new todo....");
-    setTodos(
-      todos.map((todo) => (todo.id === id ? { ...todo, task: newtodo } : todo))
-    );
+    const newtodo: string | null = prompt("Enter new todo....");
+    if (newtodo) {
+      setTodos(
+        todos.map((todo) =>
+          todo.id === id ? { ...todo, task: newtodo } : todo
+        )
+      );
+    }
   };
 
   const addTodo = (value: string): void => {

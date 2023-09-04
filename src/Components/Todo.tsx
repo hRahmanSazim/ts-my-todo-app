@@ -1,6 +1,15 @@
 import { Text, Flex, Button, Container, Space } from "@mantine/core";
-
-const Todo = ({ todo, removeTodo, editTodo }) => {
+type Task = {
+  task: string;
+  id: string;
+  completed: boolean;
+};
+interface props {
+  todo: Task;
+  removeTodo: (id: string) => void;
+  editTodo: (id: string) => void;
+}
+const Todo = ({ todo, removeTodo, editTodo }: props) => {
   return (
     <Flex direction="row">
       <Container>
