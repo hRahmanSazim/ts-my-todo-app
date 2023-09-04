@@ -3,6 +3,8 @@ import TodoWrapper from "./Components/TodoWrapper";
 import { useState } from "react";
 import Todo from "./Components/Todo";
 import { v4 as uuidv4 } from "uuid";
+import { MantineProvider } from "@mantine/core";
+import { HeaderSimple } from "./HeaderSimple";
 
 export default function App(): JSX.Element {
   type Task = {
@@ -41,22 +43,29 @@ export default function App(): JSX.Element {
     const newTodos: Task[] = [todo, ...todos];
     setTodos(newTodos);
   };
-
+  interface HeaderSimpleProps {
+    links: { link: string; label: string }[];
+  }
+  const header: HeaderSimpleProps[] = {};
   return (
-    <Box>
-      <Flex direction="column" gap="xl" color="yellow">
-        <TodoWrapper addTodo={addTodo} />
-        {todos.map((todo) => {
-          return (
-            <Todo
-              todo={todo}
-              key={todo.id}
-              removeTodo={removeTodo}
-              editTodo={editTodo}
-            />
-          );
-        })}
-      </Flex>
-    </Box>
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      {/* <Text>Welcome to Mantine!</Text> */}
+      <HeaderSimple links={[header]} />
+      <Box>
+        <Flex direction="column" gap="xl" color="yellow">
+          <TodoWrapper addTodo={addTodo} />
+          {todos.map((todo) => {
+            return (
+              <Todo
+                todo={todo}
+                key={todo.id}
+                removeTodo={removeTodo}
+                editTodo={editTodo}
+              />
+            );
+          })}
+        </Flex>
+      </Box>
+    </MantineProvider>
   );
 }
