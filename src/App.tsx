@@ -5,23 +5,24 @@ import Todo from "./Components/Todo";
 import { v4 as uuidv4 } from "uuid";
 
 export default function App(): JSX.Element {
-  interface Task {
+  type Task = {
     task: string;
     id: string;
     completed: boolean;
-  }
+  };
   const id: string = uuidv4();
 
-  const [todos, setTodos] = useState<object[]>([]);
+  const [todos, setTodos] = useState<Task[]>([]);
 
   type myFunction = (id: string) => void;
-  function removeTodo(fn: myFunction) {
-    const updatedTodos = [...todos].filter((todo) => todo.id !== fn.id);
-    setTodos(updatedTodos);
-  }
 
-  const editTodo = (id: string) => {
-    const newtodo = prompt("Enter new todo....");
+  const removeTodo: myFunction = (id) => {
+    const updatedTodos = [...todos].filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+  };
+
+  const editTodo: myFunction = (id) => {
+    const newtodo: string = prompt("Enter new todo....");
     setTodos(
       todos.map((todo) => (todo.id === id ? { ...todo, task: newtodo } : todo))
     );
@@ -33,7 +34,7 @@ export default function App(): JSX.Element {
       id: id,
       completed: false,
     };
-    const newTodos: object[] = [todo, ...todos];
+    const newTodos: Task[] = [todo, ...todos];
     setTodos(newTodos);
   };
 
