@@ -1,4 +1,4 @@
-import { Box, Flex } from "@mantine/core";
+import { Box, Flex, Button, Group } from "@mantine/core";
 import TodoWrapper from "./Components/TodoWrapper";
 import { useState } from "react";
 import Todo from "./Components/Todo";
@@ -14,14 +14,14 @@ export default function App(): JSX.Element {
 
   const [todos, setTodos] = useState<Task[]>([]);
 
-  type myFunction = (id: string) => void;
+  type idFunc = (id: string) => void;
 
-  const removeTodo: myFunction = (id) => {
+  const removeTodo: idFunc = (id) => {
     const updatedTodos = [...todos].filter((todo) => todo.id !== id);
     setTodos(updatedTodos);
   };
 
-  const editTodo: myFunction = (id) => {
+  const editTodo: idFunc = (id) => {
     const newtodo: string | null = prompt("Enter new todo....");
     if (newtodo) {
       setTodos(

@@ -2,11 +2,11 @@ import { Container, Group, Text, TextInput, Space } from "@mantine/core";
 import { FormEvent } from "react";
 import { useState } from "react";
 
-type addFunc = {
+type addValue = {
   addTodo: (value: string) => void;
 };
 
-export default function Todowrapper({ addTodo }: addFunc): JSX.Element {
+export default function Todowrapper({ addTodo }: addValue): JSX.Element {
   const [value, setValue] = useState<string>("");
 
   const handleSubmit = (e: FormEvent): void => {
@@ -22,10 +22,11 @@ export default function Todowrapper({ addTodo }: addFunc): JSX.Element {
           MY TODO APP
         </Text>
       </Group>
+      <Space h="xl" />
       <form onSubmit={handleSubmit}>
         <TextInput
           placeholder="Start writing tasks......"
-          label="Add Todo"
+          label="Add Todo Here"
           size="lg"
           value={value}
           radius="md"
