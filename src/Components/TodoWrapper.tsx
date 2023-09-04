@@ -1,4 +1,12 @@
-import { Container, Group, Text, TextInput, Space } from "@mantine/core";
+import {
+  Container,
+  Group,
+  Text,
+  TextInput,
+  Space,
+  Button,
+  Flex,
+} from "@mantine/core";
 import { FormEvent } from "react";
 import { useState } from "react";
 
@@ -18,23 +26,44 @@ export default function Todowrapper({ addTodo }: addValue): JSX.Element {
   return (
     <Container size={550} my={40}>
       <Group position="center">
-        <Text color="grape" fz={28} fw="bold">
+        <Text color="grape" fz={28} fw="bold" td="underline">
           MY TODO APP
         </Text>
       </Group>
+
       <Space h="xl" />
-      <form onSubmit={handleSubmit}>
-        <TextInput
-          placeholder="Start writing tasks......"
-          label="Add Todo Here"
+      <Flex
+        mih={100}
+        gap="xl"
+        justify="center"
+        align="center"
+        direction="row"
+        wrap="wrap"
+      >
+        <form onSubmit={handleSubmit}>
+          <TextInput
+            placeholder="Start writing tasks......"
+            label="Add Todo Here"
+            size="lg"
+            value={value}
+            radius="md"
+            withAsterisk
+            onChange={(e) => setValue(e.target.value)}
+          />
+        </form>
+        <Space h="lg" />
+
+        <Button
+          color="violet"
+          radius="100%"
           size="lg"
-          value={value}
-          radius="md"
-          withAsterisk
-          onChange={(e) => setValue(e.target.value)}
-        />
-      </form>
-      <Space h="xl" />
+          onClick={handleSubmit}
+          mt={24}
+        >
+          +
+        </Button>
+      </Flex>
+      <Space h="lg" />
     </Container>
   );
 }

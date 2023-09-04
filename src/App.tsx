@@ -46,7 +46,9 @@ export default function App(): JSX.Element {
   interface HeaderSimpleProps {
     links: { link: string; label: string }[];
   }
-  const header: HeaderSimpleProps[] = {};
+  const header: HeaderSimpleProps[] = {
+    links: [{ link: "htttp://google.com", label: "test" }],
+  };
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
       {/* <Text>Welcome to Mantine!</Text> */}
