@@ -43,11 +43,25 @@ export default function App(): JSX.Element {
     const newTodos: Task[] = [todo, ...todos];
     setTodos(newTodos);
   };
+
+  const handleToggle: idFunc = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              completed: !todo.completed,
+            }
+          : todo
+      )
+    );
+  };
+
   interface HeaderSimpleProps {
     links: { link: string; label: string }[];
   }
-  const header: HeaderSimpleProps[] = {
-    links: [{ link: "htttp://google.com", label: "test" }],
+  const header: HeaderSimpleProps = {
+    links: [{ link: "htttp://google.com", label: "" }],
   };
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
@@ -60,9 +74,9 @@ export default function App(): JSX.Element {
             return (
               <Todo
                 todo={todo}
-                key={todo.id}
                 removeTodo={removeTodo}
                 editTodo={editTodo}
+                handleToggle={handleToggle}
               />
             );
           })}

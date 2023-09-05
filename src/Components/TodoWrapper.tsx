@@ -1,12 +1,4 @@
-import {
-  Container,
-  Group,
-  Text,
-  TextInput,
-  Space,
-  Button,
-  Flex,
-} from "@mantine/core";
+import { Container, TextInput, Space, Button, Flex } from "@mantine/core";
 import { FormEvent } from "react";
 import { useState } from "react";
 
@@ -24,14 +16,14 @@ export default function Todowrapper({ addTodo }: addValue): JSX.Element {
   };
 
   return (
-    <Container size={550} my={40}>
-      <Group position="center">
+    <Container size={"100%"}>
+      {/* <Group position="center">
         <Text color="grape" fz={28} fw="bold" td="underline">
           MY TODO APP
         </Text>
       </Group>
 
-      <Space h="xl" />
+      <Space h="lg" /> */}
       <Flex
         mih={100}
         gap="xl"
@@ -63,7 +55,6 @@ export default function Todowrapper({ addTodo }: addValue): JSX.Element {
           +
         </Button>
       </Flex>
-      <Space h="lg" />
     </Container>
   );
 }

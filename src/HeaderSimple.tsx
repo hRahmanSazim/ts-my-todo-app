@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Center,
   createStyles,
   Header,
   Container,
@@ -50,7 +51,7 @@ const useStyles = createStyles((theme) => ({
 
     "&:hover": {
       backgroundColor:
-        theme.colorScheme === "dark"
+        theme.colorScheme === "light"
           ? theme.colors.dark[6]
           : theme.colors.gray[0],
     },
@@ -97,7 +98,9 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
     <Header height={60} mb={120}>
       <Container className={classes.header}>
         {/* <MantineLogo size={28} /> */}
-        <Text>TODO</Text>
+        <Center>
+          <Text>MY TODO</Text>
+        </Center>
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>

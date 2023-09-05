@@ -7,17 +7,34 @@ import {
   Center,
   Paper,
 } from "@mantine/core";
+import { useState, useEffect } from "react";
 type Task = {
   task: string;
   id: string;
   completed: boolean;
 };
-interface props {
+type props = {
   todo: Task;
   removeTodo: (id: string) => void;
   editTodo: (id: string) => void;
-}
-const Todo = ({ todo, removeTodo, editTodo }: props) => {
+  handleToggle: (id: string) => void;
+};
+const Todo: React.FC<props> = ({
+  todo,
+  removeTodo,
+  editTodo,
+  handleToggle,
+}) => {
+  const [status, setStatus] = useState<boolean>(todo.completed);
+  const [line, setLine] = useState<string>("");
+  useEffect(() => {
+    if (status) {
+      setLine("line-through");
+    } else {
+      setLine("md");
+    }
+  }, [status]);
+
   return (
     <Center>
       <Paper shadow="xl" radius="xl" p="xs" withBorder w={"50%"}>
@@ -30,17 +47,30 @@ const Todo = ({ todo, removeTodo, editTodo }: props) => {
           direction="row"
           wrap="wrap"
         >
-          <Button color="green" radius="100%" size="lg" ml={20}>
+          <Button
+            onClick={() => {
+              handleToggle(todo.id);
+              // setStatus();
+            }}
+            color="green"
+            radius="100%"
+            size="lg"
+            ml={20}
+          >
             ✓
           </Button>
 
           <Container>
-            <Flex wrap="wrap" c={"black"}>
-              <Text>{todo.task}</Text>
+            <Flex wrap="wrap" c={"black"} classNames={"test"}>
+              {status ? (
+                <Text td={line}>{todo.task}</Text>
+              ) : (
+                <Text fz={line}>{todo.task}</Text>
+              )}
             </Flex>
           </Container>
           <Space h="md"></Space>
-          <Flex gap={"xs"} justify={"space-between"}>
+          <Flex gap={"xs"} justify={"space-between"} mr={25}>
             <Button onClick={() => editTodo(todo.id)} color="violet">
               edit
             </Button>
