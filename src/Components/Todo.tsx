@@ -6,10 +6,11 @@ import {
   Space,
   Center,
   Paper,
-  TextInput,
 } from "@mantine/core";
-import { modals } from "@mantine/modals";
+// import { modals } from "@mantine/modals";
 import { useState, useEffect } from "react";
+import Modal from "./Modal/Modal";
+
 type Task = {
   task: string;
   id: string;
@@ -41,12 +42,12 @@ const Todo: React.FC<props> = ({
     handleToggle(id);
     setStatus(!status);
   };
-  const [newTask, setNewTask] = useState<string>("");
+  // const [newTask, setNewTask] = useState<string>("");
   // console.log(newTask);
-  const todoEditSubmitHandler = () => {
-    editTodo(newTask);
-    modals.closeAll();
-  };
+  // const todoEditSubmitHandler = () => {
+  //   editTodo(newTask);
+  //   modals.closeAll();
+  // };
   return (
     <Center>
       <Paper shadow="xl" radius="xl" p="xs" withBorder w={"50%"}>
@@ -83,7 +84,7 @@ const Todo: React.FC<props> = ({
           </Container>
           <Space h="md"></Space>
           <Flex gap={"xs"} justify={"space-between"} mr={25}>
-            <Button
+            {/* <Button
               onClick={() => {
                 // editTodo(todo.id);
                 modals.open({
@@ -106,13 +107,14 @@ const Todo: React.FC<props> = ({
               color="violet"
             >
               Edit
-            </Button>
+            </Button> */}
+            <Modal editTodo={editTodo} todo={todo} />
 
             {/* <Button onClick={() => editTodo(todo.id)} color="violet">
               edit
             </Button> */}
 
-            <Button onClick={() => removeTodo(todo.id)} color="red">
+            <Button onClick={() => removeTodo(todo.id)} color="red" radius="xl">
               delete
             </Button>
           </Flex>

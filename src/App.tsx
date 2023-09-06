@@ -24,15 +24,6 @@ export default function App(): JSX.Element {
     setTodos(updatedTodos);
   };
 
-  const editTodo: idFunc = (value) => {
-    // const newtodo: string | null = prompt("Enter new todo....");
-    if (value) {
-      setTodos(
-        todos.map((todo) => (todo.id === id ? { ...todo, task: value } : todo))
-      );
-    }
-  };
-
   const addTodo = (value: string): void => {
     const todo: Task = {
       task: value,
@@ -55,18 +46,33 @@ export default function App(): JSX.Element {
       )
     );
   };
-
-  interface HeaderSimpleProps {
-    links: { link: string; label: string }[];
-  }
-  const header: HeaderSimpleProps = {
-    links: [{ link: "htttp://google.com", label: "" }],
+  const editTodo = (id: string, value: string) => {
+    // const newtodo: string | null = prompt("Enter new todo....");
+    if (value) {
+      setTodos(
+        todos.map((todo) => (todo.id === id ? { ...todo, task: value } : todo))
+      );
+    }
   };
+
+  // interface HeaderSimpleProps {
+  //   links: { link: string; label: string }[];
+  // }
+  // const header: HeaderSimpleProps = {
+  //   links: [{ link: "htttp://google.com", label: "" }],
+  // };
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
       <ModalsProvider>
         {/* <Text>Welcome to Mantine!</Text> */}
-        <HeaderSimple links={[header]} />
+        <HeaderSimple
+          links={[
+            {
+              link: "https://github.com/hRahmanSazim/ts-my-todo-app/tree/feature",
+              label: "Github",
+            },
+          ]}
+        />
         <Box>
           <Flex direction="column" gap="xl" color="yellow">
             <TodoWrapper addTodo={addTodo} />
