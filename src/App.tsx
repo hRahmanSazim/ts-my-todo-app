@@ -5,6 +5,7 @@ import Todo from "./Components/Todo";
 import { v4 as uuidv4 } from "uuid";
 import { MantineProvider } from "@mantine/core";
 import { HeaderSimple } from "./HeaderSimple";
+import { ModalsProvider } from "@mantine/modals";
 
 export default function App(): JSX.Element {
   type Task = {
@@ -23,13 +24,11 @@ export default function App(): JSX.Element {
     setTodos(updatedTodos);
   };
 
-  const editTodo: idFunc = (id) => {
-    const newtodo: string | null = prompt("Enter new todo....");
-    if (newtodo) {
+  const editTodo: idFunc = (value) => {
+    // const newtodo: string | null = prompt("Enter new todo....");
+    if (value) {
       setTodos(
-        todos.map((todo) =>
-          todo.id === id ? { ...todo, task: newtodo } : todo
-        )
+        todos.map((todo) => (todo.id === id ? { ...todo, task: value } : todo))
       );
     }
   };
@@ -65,23 +64,25 @@ export default function App(): JSX.Element {
   };
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
-      {/* <Text>Welcome to Mantine!</Text> */}
-      <HeaderSimple links={[header]} />
-      <Box>
-        <Flex direction="column" gap="xl" color="yellow">
-          <TodoWrapper addTodo={addTodo} />
-          {todos.map((todo) => {
-            return (
-              <Todo
-                todo={todo}
-                removeTodo={removeTodo}
-                editTodo={editTodo}
-                handleToggle={handleToggle}
-              />
-            );
-          })}
-        </Flex>
-      </Box>
+      <ModalsProvider>
+        {/* <Text>Welcome to Mantine!</Text> */}
+        <HeaderSimple links={[header]} />
+        <Box>
+          <Flex direction="column" gap="xl" color="yellow">
+            <TodoWrapper addTodo={addTodo} />
+            {todos.map((todo) => {
+              return (
+                <Todo
+                  todo={todo}
+                  removeTodo={removeTodo}
+                  editTodo={editTodo}
+                  handleToggle={handleToggle}
+                />
+              );
+            })}
+          </Flex>
+        </Box>
+      </ModalsProvider>
     </MantineProvider>
   );
 }

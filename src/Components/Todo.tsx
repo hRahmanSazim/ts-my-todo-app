@@ -6,7 +6,9 @@ import {
   Space,
   Center,
   Paper,
+  TextInput,
 } from "@mantine/core";
+import { modals } from "@mantine/modals";
 import { useState, useEffect } from "react";
 type Task = {
   task: string;
@@ -33,8 +35,18 @@ const Todo: React.FC<props> = ({
     } else {
       setLine("md");
     }
+    // setStatus(!status);
   }, [status]);
-
+  const toggleComplete = (id: string) => {
+    handleToggle(id);
+    setStatus(!status);
+  };
+  const [newTask, setNewTask] = useState<string>("");
+  // console.log(newTask);
+  const todoEditSubmitHandler = () => {
+    editTodo(newTask);
+    modals.closeAll();
+  };
   return (
     <Center>
       <Paper shadow="xl" radius="xl" p="xs" withBorder w={"50%"}>
@@ -49,7 +61,7 @@ const Todo: React.FC<props> = ({
         >
           <Button
             onClick={() => {
-              handleToggle(todo.id);
+              toggleComplete(todo.id);
               // setStatus();
             }}
             color="green"
@@ -71,11 +83,34 @@ const Todo: React.FC<props> = ({
           </Container>
           <Space h="md"></Space>
           <Flex gap={"xs"} justify={"space-between"} mr={25}>
-            <Button onClick={() => editTodo(todo.id)} color="violet">
-              edit
+            <Button
+              onClick={() => {
+                // editTodo(todo.id);
+                modals.open({
+                  title: "Edit Selected ToDo: ",
+                  children: (
+                    <>
+                      <TextInput
+                        label="Updated todo"
+                        placeholder="Add task...."
+                        data-autofocus
+                        onChange={(e) => setNewTask(e.target.value)}
+                      />
+                      <Button fullWidth onClick={todoEditSubmitHandler} mt="md">
+                        Submit
+                      </Button>
+                    </>
+                  ),
+                });
+              }}
+              color="violet"
+            >
+              Edit
             </Button>
 
-            {/* <TextInput label="Edit Todo" placeholder="New Task..." size="xs" /> */}
+            {/* <Button onClick={() => editTodo(todo.id)} color="violet">
+              edit
+            </Button> */}
 
             <Button onClick={() => removeTodo(todo.id)} color="red">
               delete
