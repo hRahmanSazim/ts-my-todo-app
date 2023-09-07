@@ -1,15 +1,14 @@
 import {
   Text,
   Flex,
-  Button,
   Container,
-  Space,
   Center,
   Paper,
+  ActionIcon,
 } from "@mantine/core";
-// import { modals } from "@mantine/modals";
 import { useState, useEffect } from "react";
 import Modal from "./Modal/Modal";
+import { IconCircleCheck, IconTrash } from "@tabler/icons-react";
 
 type Task = {
   task: string;
@@ -36,7 +35,6 @@ const Todo: React.FC<props> = ({
     } else {
       setLine("md");
     }
-    // setStatus(!status);
   }, [status]);
   const toggleComplete = (id: string) => {
     handleToggle(id);
@@ -53,28 +51,26 @@ const Todo: React.FC<props> = ({
       <Paper shadow="xl" radius="xl" p="xs" withBorder w={"50%"}>
         <Flex
           mih={26}
-          w={"100%"}
+          maw={"100%"}
           gap="md"
           justify="center"
           align="center"
           direction="row"
           wrap="wrap"
         >
-          <Button
+          <ActionIcon
             onClick={() => {
               toggleComplete(todo.id);
-              // setStatus();
             }}
             color="green"
-            radius="100%"
-            size="lg"
+            size={"30"}
             ml={20}
           >
-            ✓
-          </Button>
+            <IconCircleCheck size={"30"} />
+          </ActionIcon>
 
           <Container>
-            <Flex wrap="wrap" c={"black"} classNames={"test"}>
+            <Flex wrap="wrap" c={"white"} classNames={"test"}>
               {status ? (
                 <Text td={line}>{todo.task}</Text>
               ) : (
@@ -82,8 +78,8 @@ const Todo: React.FC<props> = ({
               )}
             </Flex>
           </Container>
-          <Space h="md"></Space>
-          <Flex gap={"xs"} justify={"space-between"} mr={25}>
+          {/* <Space h="md"></Space> */}
+          <Flex gap={"xs"} justify={"space-evenly"} mr={25}>
             {/* <Button
               onClick={() => {
                 // editTodo(todo.id);
@@ -114,9 +110,13 @@ const Todo: React.FC<props> = ({
               edit
             </Button> */}
 
-            <Button onClick={() => removeTodo(todo.id)} color="red" radius="xl">
-              delete
-            </Button>
+            <ActionIcon
+              onClick={() => removeTodo(todo.id)}
+              color="red"
+              size={"30"}
+            >
+              <IconTrash size={"30"} />
+            </ActionIcon>
           </Flex>
         </Flex>
       </Paper>

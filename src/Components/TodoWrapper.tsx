@@ -1,4 +1,5 @@
-import { Container, TextInput, Space, Button, Flex } from "@mantine/core";
+import { Container, TextInput, Flex, ActionIcon } from "@mantine/core";
+import { IconCirclePlus } from "@tabler/icons-react";
 import { FormEvent } from "react";
 import { useState } from "react";
 
@@ -8,22 +9,13 @@ type addValue = {
 
 export default function Todowrapper({ addTodo }: addValue): JSX.Element {
   const [value, setValue] = useState<string>("");
-
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
     addTodo(value);
     setValue("");
   };
-
   return (
-    <Container size={"100%"}>
-      {/* <Group position="center">
-        <Text color="grape" fz={28} fw="bold" td="underline">
-          MY TODO APP
-        </Text>
-      </Group>
-
-      <Space h="lg" /> */}
+    <Container>
       <Flex
         mih={100}
         gap="xl"
@@ -38,22 +30,14 @@ export default function Todowrapper({ addTodo }: addValue): JSX.Element {
             label="Add Todo Here"
             size="lg"
             value={value}
-            radius="md"
+            radius="lg"
             withAsterisk
             onChange={(e) => setValue(e.target.value)}
           />
         </form>
-        <Space h="lg" />
-
-        <Button
-          color="violet"
-          radius="100%"
-          size="lg"
-          onClick={handleSubmit}
-          mt={24}
-        >
-          +
-        </Button>
+        <ActionIcon size={"20"} color="violet" onClick={handleSubmit} mt={24}>
+          <IconCirclePlus size={"50"}>+</IconCirclePlus>
+        </ActionIcon>
       </Flex>
     </Container>
   );

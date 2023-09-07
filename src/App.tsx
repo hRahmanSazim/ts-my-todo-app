@@ -1,11 +1,8 @@
-import { Box, Flex } from "@mantine/core";
-import TodoWrapper from "./Components/TodoWrapper";
 import { useState } from "react";
-import Todo from "./Components/Todo";
 import { v4 as uuidv4 } from "uuid";
 import { MantineProvider } from "@mantine/core";
-import { HeaderSimple } from "./HeaderSimple";
 import { ModalsProvider } from "@mantine/modals";
+import HeaderShell from "./AppShell";
 
 export default function App(): JSX.Element {
   type Task = {
@@ -62,33 +59,19 @@ export default function App(): JSX.Element {
   //   links: [{ link: "htttp://google.com", label: "" }],
   // };
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <ModalsProvider>
-        {/* <Text>Welcome to Mantine!</Text> */}
-        <HeaderSimple
-          links={[
-            {
-              link: "https://github.com/hRahmanSazim/ts-my-todo-app/tree/feature",
-              label: "Github",
-            },
-          ]}
-        />
-        <Box>
-          <Flex direction="column" gap="xl" color="yellow">
-            <TodoWrapper addTodo={addTodo} />
-            {todos.map((todo) => {
-              return (
-                <Todo
-                  todo={todo}
-                  removeTodo={removeTodo}
-                  editTodo={editTodo}
-                  handleToggle={handleToggle}
-                />
-              );
-            })}
-          </Flex>
-        </Box>
-      </ModalsProvider>
+    <MantineProvider
+      theme={{ colorScheme: "dark" }}
+      withGlobalStyles
+      withNormalizeCSS
+    >
+      <HeaderShell
+        addTodo={addTodo}
+        todos={todos}
+        removeTodo={removeTodo}
+        editTodo={editTodo}
+        handleToggle={handleToggle}
+      />
+      <ModalsProvider>{/* <Text>Welcome to Mantine!</Text> */}</ModalsProvider>
     </MantineProvider>
   );
 }
