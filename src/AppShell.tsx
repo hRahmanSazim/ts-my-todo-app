@@ -40,7 +40,7 @@ export default function HeaderShell({
       })}
     >
       {
-        <Box>
+        <Box pt={"6rem"}>
           <Flex direction="column" gap="xl">
             {todos.map(
               (todo: { task: string; id: string; completed: boolean }) => {
@@ -54,9 +54,8 @@ export default function HeaderShell({
                 );
               }
             )}
+            <AddModal addTodo={addTodo} />
           </Flex>
-
-          <AddModal addTodo={addTodo} />
         </Box>
       }
     </AppShell>
