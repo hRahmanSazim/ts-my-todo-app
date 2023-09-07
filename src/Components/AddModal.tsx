@@ -1,31 +1,27 @@
-import { Container, TextInput, Flex, ActionIcon } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import { IconCirclePlus } from "@tabler/icons-react";
-import { FormEvent } from "react";
+import { Modal, Center, ActionIcon, TextInput } from "@mantine/core";
 import { useState } from "react";
+import { FormEvent } from "react";
 
 type addValue = {
   addTodo: (value: string) => void;
 };
-
-export default function Todowrapper({ addTodo }: addValue): JSX.Element {
+export default function AddModal({ addTodo }: addValue) {
+  const [opened, { open, close }] = useDisclosure(false);
   const [value, setValue] = useState<string>("");
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
     addTodo(value);
     setValue("");
+    close();
   };
   return (
-    <Container>
-      <Flex
-        mih={100}
-        gap="xl"
-        justify="center"
-        align="center"
-        direction="row"
-        wrap="wrap"
-      >
+    <>
+      <Modal opened={opened} onClose={close} title="Add Todo">
         <form onSubmit={handleSubmit}>
           <TextInput
+            data-autoFocus
             placeholder="Start writing tasks......"
             label="Add Todo Here"
             size="lg"
@@ -35,10 +31,19 @@ export default function Todowrapper({ addTodo }: addValue): JSX.Element {
             onChange={(e) => setValue(e.target.value)}
           />
         </form>
-        <ActionIcon size={"20"} color="violet" onClick={handleSubmit} mt={24}>
-          <IconCirclePlus size={"50"}>+</IconCirclePlus>
+      </Modal>
+      <Center>
+        <ActionIcon
+          onClick={open}
+          size="6rem"
+          radius="xl"
+          variant="subtle"
+          c={"#00BDD7"}
+        >
+          <IconCirclePlus size="6rem" />
         </ActionIcon>
-      </Flex>
-    </Container>
+      </Center>
+    </>
   );
 }
+// *** important ->>>> onClick={handleSubmit}

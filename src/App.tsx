@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { MantineProvider } from "@mantine/core";
-import { ModalsProvider } from "@mantine/modals";
 import HeaderShell from "./AppShell";
 
 export default function App(): JSX.Element {
@@ -44,7 +43,6 @@ export default function App(): JSX.Element {
     );
   };
   const editTodo = (id: string, value: string) => {
-    // const newtodo: string | null = prompt("Enter new todo....");
     if (value) {
       setTodos(
         todos.map((todo) => (todo.id === id ? { ...todo, task: value } : todo))
@@ -52,12 +50,6 @@ export default function App(): JSX.Element {
     }
   };
 
-  // interface HeaderSimpleProps {
-  //   links: { link: string; label: string }[];
-  // }
-  // const header: HeaderSimpleProps = {
-  //   links: [{ link: "htttp://google.com", label: "" }],
-  // };
   return (
     <MantineProvider
       theme={{ colorScheme: "dark" }}
@@ -71,7 +63,6 @@ export default function App(): JSX.Element {
         editTodo={editTodo}
         handleToggle={handleToggle}
       />
-      <ModalsProvider>{/* <Text>Welcome to Mantine!</Text> */}</ModalsProvider>
     </MantineProvider>
   );
 }

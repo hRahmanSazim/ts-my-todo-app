@@ -7,7 +7,7 @@ import {
   ActionIcon,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
-import Modal from "./Modal/Modal";
+
 import { IconCircleCheck, IconTrash } from "@tabler/icons-react";
 
 type Task = {
@@ -104,7 +104,7 @@ const Todo: React.FC<props> = ({
             >
               Edit
             </Button> */}
-            <Modal editTodo={editTodo} todo={todo} />
+            {/* <Modal editTodo={editTodo} todo={todo} /> */}
 
             {/* <Button onClick={() => editTodo(todo.id)} color="violet">
               edit

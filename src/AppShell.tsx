@@ -1,6 +1,7 @@
 import { AppShell, Text, Header, Box, Flex, Anchor } from "@mantine/core";
-import TodoWrapper from "./Components/TodoWrapper";
+
 import Todo from "./Components/Todo";
+import AddModal from "./Components/AddModal";
 
 export default function HeaderShell({
   addTodo,
@@ -12,21 +13,17 @@ export default function HeaderShell({
   return (
     <AppShell
       padding="md"
-      // navbar={
-      //   <Navbar width={base}} height={"100%"} p="xs">
-      //     {/* Navbar content */}
-      //   </Navbar>
-      // }
       header={
-        <Header height={55} p="xs" c={"white"}>
+        <Header height={55} p="xs" c={"white"} bg={"#00BDD7"}>
           <Flex justify={"space-around"}>
-            {/* Header content */}
             <Text fz={"xl"} fw={"bolder"} tt={"capitalize"}>
-              Sazim ToDo
+              Sazim Todo
             </Text>
             <Anchor
+              c={"white"}
               href="https://github.com/hRahmanSazim/ts-my-todo-app/tree/feature"
               target="_blank"
+              td={"underline"}
             >
               Github link
             </Anchor>
@@ -36,28 +33,30 @@ export default function HeaderShell({
       styles={(theme) => ({
         main: {
           backgroundColor:
-            theme.colorScheme === "dark"
+            theme.colorScheme === "light"
               ? theme.colors.dark[8]
               : theme.colors.gray[0],
         },
       })}
     >
       {
-        /* Your application here */
         <Box>
-          <Flex direction="column" gap="xl" color="yellow">
-            <TodoWrapper addTodo={addTodo} />
-            {todos.map((todo) => {
-              return (
-                <Todo
-                  todo={todo}
-                  removeTodo={removeTodo}
-                  editTodo={editTodo}
-                  handleToggle={handleToggle}
-                />
-              );
-            })}
+          <Flex direction="column" gap="xl">
+            {todos.map(
+              (todo: { task: string; id: string; completed: boolean }) => {
+                return (
+                  <Todo
+                    todo={todo}
+                    removeTodo={removeTodo}
+                    editTodo={editTodo}
+                    handleToggle={handleToggle}
+                  />
+                );
+              }
+            )}
           </Flex>
+
+          <AddModal addTodo={addTodo} />
         </Box>
       }
     </AppShell>
