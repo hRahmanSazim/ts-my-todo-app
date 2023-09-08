@@ -21,13 +21,16 @@ export default function App(): JSX.Element {
   };
 
   const addTodo = (value: string): void => {
-    const todo: Task = {
-      task: value,
-      id: id,
-      completed: false,
-    };
-    const newTodos: Task[] = [todo, ...todos];
-    setTodos(newTodos);
+    const found = todos.find((todo) => todo.task === value);
+    if (!found) {
+      const todo: Task = {
+        task: value,
+        id: id,
+        completed: false,
+      };
+      const newTodos: Task[] = [todo, ...todos];
+      setTodos(newTodos);
+    }
   };
 
   const handleToggle: idFunc = (id) => {

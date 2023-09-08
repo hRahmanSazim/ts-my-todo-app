@@ -1,5 +1,5 @@
 import { useDisclosure } from "@mantine/hooks";
-import { IconCirclePlus } from "@tabler/icons-react";
+import { AiOutlinePlus } from "react-icons/ai";
 import {
   Modal,
   Center,
@@ -18,20 +18,23 @@ export default function AddModal({ addTodo }: addValue) {
   const [opened, { open, close }] = useDisclosure(false);
   const [value, setValue] = useState<string>("");
   const handleSubmit = (e: FormEvent): void => {
-    e.preventDefault();
-    addTodo(value);
-    setValue("");
+    if (value) {
+      e.preventDefault();
+      addTodo(value);
+      setValue("");
+    }
     close();
   };
   return (
     <>
-      <Modal opened={opened} onClose={close} title="" centered size={"50%"}>
+      <Modal opened={opened} onClose={close} title="" centered size={"40%"}>
         <Flex
           direction="column"
           justify={"center"}
           align={"center"}
-          gap="xl"
+          gap={"3.5rem"}
           wrap={"wrap"}
+          h={"18rem"}
         >
           <Center>
             <form onSubmit={handleSubmit}>
@@ -39,7 +42,7 @@ export default function AddModal({ addTodo }: addValue) {
                 data-autoFocus
                 placeholder="Add Todo..."
                 //   label="Add Todo Here"
-                size="2.5rem"
+                size="3rem"
                 value={value}
                 radius="xl"
                 withAsterisk
@@ -63,12 +66,12 @@ export default function AddModal({ addTodo }: addValue) {
       <Center>
         <ActionIcon
           onClick={open}
-          size="6rem"
+          size="5rem"
           radius="6rem"
           variant="transparent"
-          c={"#00BDD7"}
+          bg={"#00BDD7"}
         >
-          <IconCirclePlus size="6rem" radius="xl" />
+          <AiOutlinePlus size="3.5rem" color="white" />
         </ActionIcon>
       </Center>
     </>
