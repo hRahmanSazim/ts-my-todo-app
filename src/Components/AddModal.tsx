@@ -1,13 +1,6 @@
 import { useDisclosure } from "@mantine/hooks";
 import { AiOutlinePlus } from "react-icons/ai";
-import {
-  Modal,
-  Center,
-  ActionIcon,
-  TextInput,
-  Button,
-  Flex,
-} from "@mantine/core";
+import { Modal, ActionIcon, TextInput, Button, Flex } from "@mantine/core";
 import { useState } from "react";
 import { FormEvent } from "react";
 
@@ -37,43 +30,45 @@ export default function AddModal({ addTodo }: addValue) {
           wrap={"wrap"}
           h={"18rem"}
         >
-          <Center>
-            <form onSubmit={handleSubmit}>
-              <TextInput
-                data-autoFocus
-                placeholder="Add Todo..."
-                size="2rem"
-                radius="xl"
-                withAsterisk
-                onChange={(e) => setValue(e.target.value)}
-                variant="filled"
-              />
-            </form>
-          </Center>
-          <Center>
-            <Button
-              bg={"#00BDD7"}
-              c={"white"}
-              onClick={handleSubmit}
-              radius={"xl"}
-              size="lg"
-            >
-              Add
-            </Button>
-          </Center>
+          <form onSubmit={handleSubmit}>
+            <TextInput
+              data-autoFocus
+              placeholder="Add Todo..."
+              size="2rem"
+              radius="xl"
+              withAsterisk
+              onChange={(e) => setValue(e.target.value)}
+              variant="filled"
+              styles={() => ({
+                input: {
+                  padding: "2rem",
+                },
+              })}
+            />
+          </form>
+
+          <Button
+            bg={"#00BDD7"}
+            c={"white"}
+            onClick={handleSubmit}
+            radius={"xl"}
+            size="lg"
+          >
+            Add
+          </Button>
         </Flex>
       </Modal>
-      <Center>
-        <ActionIcon
-          onClick={open}
-          size="5rem"
-          radius="6rem"
-          variant="transparent"
-          bg={"#00BDD7"}
-        >
-          <AiOutlinePlus size="3.5rem" color="white" />
-        </ActionIcon>
-      </Center>
+
+      <ActionIcon
+        sx={{ position: "fixed", bottom: "2.5rem", margin: "0 auto" }}
+        onClick={open}
+        size="5rem"
+        radius="6rem"
+        variant="transparent"
+        bg={"#00BDD7"}
+      >
+        <AiOutlinePlus size="3.5rem" color="white" />
+      </ActionIcon>
     </>
   );
 }

@@ -1,7 +1,6 @@
 import {
   Text,
   Flex,
-  Chip,
   Group,
   Paper,
   Badge,
@@ -9,14 +8,17 @@ import {
   Container,
   Button,
   Menu,
+  ActionIcon,
 } from "@mantine/core";
 import { useState, useEffect } from "react";
 import EditModal from "./EditModal";
 import { TbTrashX } from "react-icons/tb";
 import { TiTickOutline } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
+import { AiTwotoneCheckCircle, AiFillCheckCircle } from "react-icons/ai";
+import format from "date-fns/format";
 
-type Task = {
+export type Task = {
   task: string;
   id: string;
   completed: boolean;
@@ -52,7 +54,6 @@ const Todo: React.FC<props> = ({
   // const todoEditSubmitHandler = (id: string, value: string) => {
   //   editTodo(id, value);
   // };
-
   return (
     <Flex
       gap={"xl"}
@@ -61,30 +62,27 @@ const Todo: React.FC<props> = ({
       direction="row"
       wrap="wrap"
     >
-      <Chip
-        variant="light"
-        radius={"xl"}
+      <ActionIcon
         onClick={() => toggleComplete(todo.id)}
-        children={undefined}
-        size={"lg"}
-      ></Chip>
-      <Paper
-        shadow="xl"
-        radius="xl"
-        p="sm"
-        withBorder
-        bg={"#DCDCDC"}
-        w={"30rem"}
+        size={"xl"}
+        radius={"100%"}
       >
-        <Grid align="flex-start">
-          <Grid.Col span={4}>
+        {todo.completed ? (
+          <AiFillCheckCircle size="4rem" color="green" />
+        ) : (
+          <AiTwotoneCheckCircle size="4rem" />
+        )}
+      </ActionIcon>
+      <Paper shadow="xl" radius="xl" p="sm" bg={"#F3F4F6"} w={"30rem"}>
+        <Grid align="center" columns={12}>
+          <Grid.Col span={3}>
             <Group>
-              <Badge fz={"sm"} c={"white"} bg={"black"}>
-                {todo.time}
+              <Badge fz={"xs"} c={"white"} bg={"black"} size="xl">
+                {format(new Date(todo.time), "hh:mm a")}
               </Badge>
             </Group>
           </Grid.Col>
-          <Grid.Col span={4}>
+          <Grid.Col span={5}>
             <Container c={"black"}>
               {status ? (
                 <Text td={line}>{todo.task}</Text>
@@ -94,16 +92,18 @@ const Todo: React.FC<props> = ({
             </Container>
           </Grid.Col>
           <Grid.Col span={4}>
-            {/* <ActionIcon onClick={() => removeTodo(todo.id)}></ActionIcon>
-             */}
-            {/* <Text c={"red"} pl={"5rem"}> */}
-            {/* testing
-            </Text> */}
             <Button.Group>
               <EditModal todo={todo} editTodo={editTodo} />
               <Menu>
                 <Menu.Target>
-                  <Button c={"white"} bg={"red"}>
+                  <Button
+                    c={"white"}
+                    bg={"#E03131"}
+                    radius={"xl"}
+                    styles={() => ({
+                      root: { "&:hover": { backgroundColor: "#C92A2A" } },
+                    })}
+                  >
                     <TbTrashX size="1.5rem"></TbTrashX>
                   </Button>
                 </Menu.Target>

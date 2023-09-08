@@ -8,13 +8,11 @@ export default function App(): JSX.Element {
     task: string;
     id: string;
     completed: boolean;
-    time: string;
+    time: Date;
   };
   const id: string = uuidv4();
   // const getTime = () => new Date().toLocaleTimeString();
-  const [currentTime, setCurrentTime] = useState(
-    new Date().toLocaleTimeString()
-  );
+  const [currentTime, setCurrentTime] = useState(new Date());
   const [todos, setTodos] = useState<Task[]>([]);
   type idFunc = (id: string) => void;
 
@@ -26,7 +24,7 @@ export default function App(): JSX.Element {
   const addTodo = (value: string): void => {
     const found = todos.find((todo) => todo.task === value);
     if (!found) {
-      setCurrentTime(new Date().toLocaleTimeString());
+      setCurrentTime(new Date());
       const todo: Task = {
         task: value,
         id: id,
@@ -39,7 +37,7 @@ export default function App(): JSX.Element {
   };
 
   const handleToggle: idFunc = (id) => {
-    setCurrentTime(new Date().toLocaleTimeString());
+    setCurrentTime(new Date());
     setTodos(
       todos.map((todo) =>
         todo.id === id
@@ -54,7 +52,7 @@ export default function App(): JSX.Element {
   };
   const editTodo = (id: string, value: string) => {
     if (value) {
-      setCurrentTime(new Date().toLocaleTimeString());
+      setCurrentTime(new Date());
       setTodos(
         todos.map((todo) =>
           todo.id === id ? { ...todo, task: value, time: currentTime } : todo

@@ -6,7 +6,7 @@ import { HiOutlinePencil } from "react-icons/hi";
 export default function EditModal({ todo, editTodo }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [newTask, setNewTask] = useState<string>("");
-  const handleSubmit = (e: FormEvent): void => {
+  const handleEdit = (e: FormEvent): void => {
     if (newTask) {
       e.preventDefault();
       editTodo(todo.id, newTask);
@@ -16,7 +16,15 @@ export default function EditModal({ todo, editTodo }) {
   };
   return (
     <>
-      <Button onClick={open}>
+      <Button
+        onClick={open}
+        c={"black"}
+        bg={"white"}
+        radius={"xl"}
+        styles={() => ({
+          root: { "&:hover": { backgroundColor: "#EEE" } },
+        })}
+      >
         <HiOutlinePencil size="1.5rem"></HiOutlinePencil>
         <Modal opened={opened} onClose={close} title="" centered size={"40%"}>
           <Flex
@@ -28,7 +36,7 @@ export default function EditModal({ todo, editTodo }) {
             h={"18rem"}
           >
             <Center>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleEdit}>
                 <TextInput
                   data-autoFocus
                   placeholder="Edit chosen Todo..."
@@ -44,7 +52,7 @@ export default function EditModal({ todo, editTodo }) {
               <Button
                 bg={"#00BDD7"}
                 c={"white"}
-                onClick={handleSubmit}
+                onClick={handleEdit}
                 radius={"xl"}
                 size="lg"
               >

@@ -8,16 +8,22 @@ import {
   Center,
 } from "@mantine/core";
 
-import Todo from "./Components/Todo";
+import Todo, { Task } from "./Components/Todo";
 import AddModal from "./Components/AddModal";
-
+type props = {
+  addTodo: () => void;
+  todos: Task[];
+  removeTodo: () => void;
+  editTodo: () => void;
+  handleToggle: () => void;
+};
 export default function HeaderShell({
   addTodo,
   todos,
   removeTodo,
   editTodo,
   handleToggle,
-}) {
+}: props) {
   return (
     <AppShell
       padding="md"
@@ -51,21 +57,19 @@ export default function HeaderShell({
         <Center>
           <Container pt={"6rem"}>
             <Flex direction="column" gap="xl">
-              {todos.map(
-                (todo: { task: string; id: string; completed: boolean }) => {
-                  return (
-                    <Todo
-                      todo={todo}
-                      removeTodo={removeTodo}
-                      editTodo={editTodo}
-                      handleToggle={handleToggle}
-                    />
-                  );
-                }
-              )}
-              <AddModal addTodo={addTodo} />
+              {todos.map((todo: Task) => {
+                return (
+                  <Todo
+                    todo={todo}
+                    removeTodo={removeTodo}
+                    editTodo={editTodo}
+                    handleToggle={handleToggle}
+                  />
+                );
+              })}
             </Flex>
           </Container>
+          <AddModal addTodo={addTodo} />
         </Center>
       }
     </AppShell>
