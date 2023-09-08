@@ -1,4 +1,12 @@
-import { AppShell, Text, Header, Box, Flex, Anchor } from "@mantine/core";
+import {
+  AppShell,
+  Text,
+  Header,
+  Container,
+  Flex,
+  Anchor,
+  Center,
+} from "@mantine/core";
 
 import Todo from "./Components/Todo";
 import AddModal from "./Components/AddModal";
@@ -40,23 +48,25 @@ export default function HeaderShell({
       })}
     >
       {
-        <Box pt={"6rem"}>
-          <Flex direction="column" gap="xl">
-            {todos.map(
-              (todo: { task: string; id: string; completed: boolean }) => {
-                return (
-                  <Todo
-                    todo={todo}
-                    removeTodo={removeTodo}
-                    editTodo={editTodo}
-                    handleToggle={handleToggle}
-                  />
-                );
-              }
-            )}
-            <AddModal addTodo={addTodo} />
-          </Flex>
-        </Box>
+        <Center>
+          <Container pt={"6rem"}>
+            <Flex direction="column" gap="xl">
+              {todos.map(
+                (todo: { task: string; id: string; completed: boolean }) => {
+                  return (
+                    <Todo
+                      todo={todo}
+                      removeTodo={removeTodo}
+                      editTodo={editTodo}
+                      handleToggle={handleToggle}
+                    />
+                  );
+                }
+              )}
+              <AddModal addTodo={addTodo} />
+            </Flex>
+          </Container>
+        </Center>
       }
     </AppShell>
   );

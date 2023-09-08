@@ -14,6 +14,7 @@ import { FormEvent } from "react";
 type addValue = {
   addTodo: (value: string) => void;
 };
+
 export default function AddModal({ addTodo }: addValue) {
   const [opened, { open, close }] = useDisclosure(false);
   const [value, setValue] = useState<string>("");
@@ -41,12 +42,11 @@ export default function AddModal({ addTodo }: addValue) {
               <TextInput
                 data-autoFocus
                 placeholder="Add Todo..."
-                //   label="Add Todo Here"
-                size="3rem"
-                value={value}
+                size="2rem"
                 radius="xl"
                 withAsterisk
                 onChange={(e) => setValue(e.target.value)}
+                variant="filled"
               />
             </form>
           </Center>

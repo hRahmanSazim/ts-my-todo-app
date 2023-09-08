@@ -8,11 +8,14 @@ export default function App(): JSX.Element {
     task: string;
     id: string;
     completed: boolean;
+    time: string;
   };
   const id: string = uuidv4();
-
+  // const getTime = () => new Date().toLocaleTimeString();
+  const [currentTime, setCurrentTime] = useState(
+    new Date().toLocaleTimeString()
+  );
   const [todos, setTodos] = useState<Task[]>([]);
-
   type idFunc = (id: string) => void;
 
   const removeTodo: idFunc = (id) => {
@@ -23,10 +26,12 @@ export default function App(): JSX.Element {
   const addTodo = (value: string): void => {
     const found = todos.find((todo) => todo.task === value);
     if (!found) {
+      setCurrentTime(new Date().toLocaleTimeString());
       const todo: Task = {
         task: value,
         id: id,
         completed: false,
+        time: currentTime,
       };
       const newTodos: Task[] = [todo, ...todos];
       setTodos(newTodos);
@@ -34,12 +39,14 @@ export default function App(): JSX.Element {
   };
 
   const handleToggle: idFunc = (id) => {
+    setCurrentTime(new Date().toLocaleTimeString());
     setTodos(
       todos.map((todo) =>
         todo.id === id
           ? {
               ...todo,
               completed: !todo.completed,
+              time: currentTime,
             }
           : todo
       )
@@ -47,8 +54,11 @@ export default function App(): JSX.Element {
   };
   const editTodo = (id: string, value: string) => {
     if (value) {
+      setCurrentTime(new Date().toLocaleTimeString());
       setTodos(
-        todos.map((todo) => (todo.id === id ? { ...todo, task: value } : todo))
+        todos.map((todo) =>
+          todo.id === id ? { ...todo, task: value, time: currentTime } : todo
+        )
       );
     }
   };
