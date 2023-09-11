@@ -70,7 +70,7 @@ const Todo: React.FC<props> = ({
         {todo.completed ? (
           <AiFillCheckCircle size="4rem" color="green" />
         ) : (
-          <AiTwotoneCheckCircle size="4rem" />
+          <AiTwotoneCheckCircle size="4rem" color="wheat" />
         )}
       </ActionIcon>
       <Paper shadow="xl" radius="xl" p="sm" bg={"#F3F4F6"} w={"30rem"}>

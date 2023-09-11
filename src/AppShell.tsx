@@ -44,14 +44,14 @@ export default function HeaderShell({
           </Flex>
         </Header>
       }
-      styles={(theme) => ({
-        main: {
-          backgroundColor:
-            theme.colorScheme === "light"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
-        },
-      })}
+      // styles={(theme) => ({
+      //   main: {
+      //     backgroundColor:
+      //       theme.colorScheme === "light"
+      //         ? theme.colors.dark[8]
+      //         : theme.colors.gray[0],
+      //   },
+      // })}
     >
       {
         <Center>

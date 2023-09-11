@@ -34,7 +34,7 @@ export default function AddModal({ addTodo }: addValue) {
             <TextInput
               data-autoFocus
               placeholder="Add Todo..."
-              size="2rem"
+              size="4rem"
               radius="xl"
               withAsterisk
               onChange={(e) => setValue(e.target.value)}
@@ -42,6 +42,7 @@ export default function AddModal({ addTodo }: addValue) {
               styles={() => ({
                 input: {
                   padding: "2rem",
+                  fontSize: "2rem",
                 },
               })}
             />
@@ -53,6 +54,14 @@ export default function AddModal({ addTodo }: addValue) {
             onClick={handleSubmit}
             radius={"xl"}
             size="lg"
+            styles={() => ({
+              root: {
+                boxShadow: "0px 5px 10px 0px rgba(0, 0, 0, 0.5)",
+                "&:hover": {
+                  boxShadow: "0px -5px 10px 0px rgba(0, 0, 0, 0.5)",
+                },
+              },
+            })}
           >
             Add
           </Button>
@@ -60,7 +69,15 @@ export default function AddModal({ addTodo }: addValue) {
       </Modal>
 
       <ActionIcon
-        sx={{ position: "fixed", bottom: "2.5rem", margin: "0 auto" }}
+        sx={{
+          position: "fixed",
+          bottom: "2.5rem",
+          margin: "0 auto",
+          boxShadow: "0px 5px 15px 0px rgba(0, 0, 0, 0.5)",
+          "&:hover": {
+            boxShadow: "0px -5px 20px 0px rgba(0, 0, 0, 0.5)",
+          },
+        }}
         onClick={open}
         size="5rem"
         radius="6rem"

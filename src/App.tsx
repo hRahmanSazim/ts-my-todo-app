@@ -63,7 +63,7 @@ export default function App(): JSX.Element {
 
   return (
     <MantineProvider
-      theme={{ colorScheme: "dark" }}
+      theme={{ colorScheme: "light" }}
       withGlobalStyles
       withNormalizeCSS
     >
