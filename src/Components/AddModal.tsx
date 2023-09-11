@@ -74,9 +74,9 @@ export default function AddModal({ addTodo }: addValue) {
           bottom: "2.5rem",
           margin: "0 auto",
           boxShadow: "0px 5px 15px 0px rgba(0, 0, 0, 0.5)",
-          "&:hover": {
-            boxShadow: "0px -5px 20px 0px rgba(0, 0, 0, 0.5)",
-          },
+          // "&:hover": {
+          //   boxShadow: "0px -5px 20px 0px rgba(0, 0, 0, 0.5)",
+          // },
         }}
         onClick={open}
         size="5rem"
