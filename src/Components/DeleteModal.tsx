@@ -1,29 +1,34 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Text, Group, Flex } from "@mantine/core";
 import { TbTrashX } from "react-icons/tb";
-import { FormEvent } from "react";
+import { Tasks } from "./Todo";
 
-const DeleteModal = ({ removeTodo, todo }) => {
+type deleteValue = {
+  removeTodo: (id: string) => void;
+  todo: Tasks;
+};
+const DeleteModal = ({ removeTodo, todo }: deleteValue) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const handleDelete = (e: FormEvent): void => {
+  const handleDelete = () => {
     removeTodo(todo.id);
     close();
   };
   return (
     <>
-      <Modal opened={opened} onClose={close} centered size={"lg"}>
+      <Modal opened={opened} onClose={close} centered size={"lg"} radius={"xl"}>
         <Flex direction={"column"} gap={"xl"}>
           <Group position={"center"}>
             <Text>"Are you sure you want to delete?"</Text>
           </Group>
           <Group position={"center"}>
             <Button
-              bg={"green"}
+              bg={"#00BDD7"}
               c={"white"}
               onClick={handleDelete}
               styles={() => ({
                 root: { "&:hover": { backgroundColor: "#006400" } },
               })}
+              radius={"xl"}
             >
               YES
             </Button>
@@ -35,6 +40,7 @@ const DeleteModal = ({ removeTodo, todo }) => {
               styles={() => ({
                 root: { "&:hover": { backgroundColor: "#C92A2A" } },
               })}
+              radius={"xl"}
             >
               NO
             </Button>

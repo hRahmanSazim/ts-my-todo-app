@@ -2,10 +2,16 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Flex, Center, TextInput } from "@mantine/core";
 import { FormEvent, useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
+import { Tasks } from "./Todo";
 
-export default function EditModal({ todo, editTodo }) {
+type editValue = {
+  todo: Tasks;
+  editTodo: (id: string, value: string) => void;
+};
+export default function EditModal({ todo, editTodo }: editValue) {
   const [opened, { open, close }] = useDisclosure(false);
   const [newTask, setNewTask] = useState<string>("");
+
   const handleEdit = (e: FormEvent): void => {
     if (newTask) {
       e.preventDefault();
@@ -65,16 +71,7 @@ export default function EditModal({ todo, editTodo }) {
           </Center>
         </Flex>
       </Modal>
-      <Button
-        onClick={open}
-        c={"black"}
-        bg={"white"}
-        radius={"xl"}
-        // size={"xl"}
-        // styles={() => ({
-        //   root: { "&:hover": { backgroundColor: "#EEE" } },
-        // })}
-      >
+      <Button onClick={open} c={"black"} bg={"white"} radius={"xl"}>
         <HiOutlinePencil size="1.5rem"></HiOutlinePencil>
       </Button>
     </>

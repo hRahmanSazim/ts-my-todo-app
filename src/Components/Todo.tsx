@@ -9,21 +9,19 @@ import {
   Button,
   ActionIcon,
 } from "@mantine/core";
-
 import EditModal from "./EditModal";
-
 import { AiTwotoneCheckCircle, AiFillCheckCircle } from "react-icons/ai";
 import format from "date-fns/format";
 import DeleteModal from "./DeleteModal";
 
-export type Task = {
+export interface Tasks {
   task: string;
   id: string;
   completed: boolean;
   time: string;
-};
+}
 type props = {
-  todo: Task;
+  todo: Tasks;
   removeTodo: (id: string) => void;
   editTodo: (id: string, value: string) => void;
   handleToggle: (id: string) => void;
@@ -75,8 +73,12 @@ const Todo: React.FC<props> = ({
             </Container>
           </Grid.Col>
           <Grid.Col span={4}>
-            <Button.Group>
-              <EditModal todo={todo} editTodo={editTodo} />
+            <Button.Group
+              sx={{
+                justifyContent: "flex-end",
+              }}
+            >
+              {!todo.completed && <EditModal todo={todo} editTodo={editTodo} />}
               <DeleteModal removeTodo={removeTodo} todo={todo} />
             </Button.Group>
           </Grid.Col>

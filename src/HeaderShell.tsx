@@ -7,15 +7,16 @@ import {
   Anchor,
   Center,
 } from "@mantine/core";
-
-import Todo, { Task } from "./Components/Todo";
+import Todo from "./Components/Todo";
 import AddModal from "./Components/AddModal";
+import { Task } from "./App";
+
 type props = {
-  addTodo: () => void;
+  addTodo: (id: string) => void;
   todos: Task[];
-  removeTodo: () => void;
-  editTodo: () => void;
-  handleToggle: () => void;
+  removeTodo: (id: string) => void;
+  editTodo: (id: string, value: string) => void;
+  handleToggle: (id: string) => void;
 };
 export default function HeaderShell({
   addTodo,
