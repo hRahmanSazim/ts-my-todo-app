@@ -1,19 +1,16 @@
-import { Box, Flex } from "@mantine/core";
-import TodoWrapper from "./Components/TodoWrapper";
 import { useState } from "react";
-import Todo from "./Components/Todo";
 import { v4 as uuidv4 } from "uuid";
-
+import { MantineProvider } from "@mantine/core";
+import HeaderShell from "./HeaderShell";
+export interface Task {
+  task: string;
+  id: string;
+  completed: boolean;
+  time: Date;
+}
 export default function App(): JSX.Element {
-  type Task = {
-    task: string;
-    id: string;
-    completed: boolean;
-  };
   const id: string = uuidv4();
-
   const [todos, setTodos] = useState<Task[]>([]);
-
   type idFunc = (id: string) => void;
 
   const removeTodo: idFunc = (id) => {
@@ -21,42 +18,56 @@ export default function App(): JSX.Element {
     setTodos(updatedTodos);
   };
 
-  const editTodo: idFunc = (id) => {
-    const newtodo: string | null = prompt("Enter new todo....");
-    if (newtodo) {
+  const addTodo = (value: string): void => {
+    const found = todos.find((todo) => todo.task === value);
+    if (!found) {
+      const todo: Task = {
+        task: value,
+        id: id,
+        completed: false,
+        time: new Date(),
+      };
+      const newTodos: Task[] = [todo, ...todos];
+      setTodos(newTodos);
+    }
+  };
+
+  const handleToggle: idFunc = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? {
+              ...todo,
+              completed: !todo.completed,
+              time: new Date(),
+            }
+          : todo
+      )
+    );
+  };
+  const editTodo = (id: string, value: string) => {
+    if (value) {
       setTodos(
         todos.map((todo) =>
-          todo.id === id ? { ...todo, task: newtodo } : todo
+          todo.id === id ? { ...todo, task: value, time: new Date() } : todo
         )
       );
     }
   };
 
-  const addTodo = (value: string): void => {
-    const todo: Task = {
-      task: value,
-      id: id,
-      completed: false,
-    };
-    const newTodos: Task[] = [todo, ...todos];
-    setTodos(newTodos);
-  };
-
   return (
-    <Box>
-      <Flex direction="column" gap="xl" color="yellow">
-        <TodoWrapper addTodo={addTodo} />
-        {todos.map((todo) => {
-          return (
-            <Todo
-              todo={todo}
-              key={todo.id}
-              removeTodo={removeTodo}
-              editTodo={editTodo}
-            />
-          );
-        })}
-      </Flex>
-    </Box>
+    <MantineProvider
+      theme={{ colorScheme: "light" }}
+      withGlobalStyles
+      withNormalizeCSS
+    >
+      <HeaderShell
+        addTodo={addTodo}
+        todos={todos}
+        removeTodo={removeTodo}
+        editTodo={editTodo}
+        handleToggle={handleToggle}
+      />
+    </MantineProvider>
   );
 }
