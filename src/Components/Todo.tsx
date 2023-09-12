@@ -13,15 +13,10 @@ import EditModal from "./EditModal";
 import { AiTwotoneCheckCircle, AiFillCheckCircle } from "react-icons/ai";
 import format from "date-fns/format";
 import DeleteModal from "./DeleteModal";
+import { Task } from "../App";
 
-export interface Tasks {
-  task: string;
-  id: string;
-  completed: boolean;
-  time: string;
-}
 type props = {
-  todo: Tasks;
+  todo: Task;
   removeTodo: (id: string) => void;
   editTodo: (id: string, value: string) => void;
   handleToggle: (id: string) => void;

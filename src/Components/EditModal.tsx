@@ -2,10 +2,10 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Flex, Center, TextInput } from "@mantine/core";
 import { FormEvent, useState } from "react";
 import { HiOutlinePencil } from "react-icons/hi";
-import { Tasks } from "./Todo";
+import { Task } from "../App";
 
 type editValue = {
-  todo: Tasks;
+  todo: Task;
   editTodo: (id: string, value: string) => void;
 };
 export default function EditModal({ todo, editTodo }: editValue) {

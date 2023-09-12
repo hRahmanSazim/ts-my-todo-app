@@ -1,11 +1,11 @@
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Text, Group, Flex } from "@mantine/core";
 import { TbTrashX } from "react-icons/tb";
-import { Tasks } from "./Todo";
+import { Task } from "../App";
 
 type deleteValue = {
   removeTodo: (id: string) => void;
-  todo: Tasks;
+  todo: Task;
 };
 const DeleteModal = ({ removeTodo, todo }: deleteValue) => {
   const [opened, { open, close }] = useDisclosure(false);

@@ -6,7 +6,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/https://github.com/hRahmanSazim/ts-my-todo-app">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="/ts-todo-app/images/edited_logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">React + TS Todo App</h3>
@@ -96,7 +96,7 @@ If you have a suggestion that would make this better, please fork the repo and c
 
 ## Contact
 
-Your Name - Hasibur Rahman - hasibur.developer@gmail.com
+Hasibur Rahman - hasibur.developer@gmail.com
 
 Project Link: [https://github.com/https://github.com/hRahmanSazim/ts-my-todo-app](https://github.com/https://github.com/hRahmanSazim/ts-my-todo-app)
 
