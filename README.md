@@ -1,10 +1,5 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -62,7 +57,7 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `https://github.com/hRahmanSazim`, `ts-my-todo-app`, `twitter_handle`, `https://www.linkedin.com/in/rahmanhasibur`, `hasibur.developer@gmail.com_client`, `hasibur.developer@gmail.com`, `React + TS Todo App`, `This is a todo app made using React JS with TypeScript. Features include things like adding todos, marking them as complete, editing todos and deleting todos. New features will be added on an ongoing basis since this project is actively being worked on. `
+`This is a todo app made using React JS with TypeScript. Features include things like adding todos, marking them as complete, editing todos and deleting todos. New features will be added on an ongoing basis since this project is actively being worked on. `
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,8 +73,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 ## Usage
 
 I have given a demo below to get an idea of the ToDo app in action.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
