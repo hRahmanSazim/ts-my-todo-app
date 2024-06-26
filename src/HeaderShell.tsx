@@ -10,6 +10,7 @@ import {
 import Todo from "./Components/Todo";
 import AddModal from "./Components/AddModal";
 import { Task } from "./App";
+import { FaGithub } from "react-icons/fa";
 
 type props = {
   addTodo: (id: string) => void;
@@ -31,16 +32,17 @@ export default function HeaderShell({
       header={
         <Header height={55} p="xs" c={"white"} bg={"#00BDD7"}>
           <Flex justify={"space-around"}>
-            <Text fz={"xl"} fw={"bolder"} tt={"capitalize"}>
-              Sazim Todo
+            <Text fz={"xl"} fw={"bolder"}>
+              ToDo or <span style={{ color: "black" }}>!</span>
+              ToDO
             </Text>
             <Anchor
-              c={"white"}
-              href="https://github.com/hRahmanSazim/ts-my-todo-app/tree/feature"
+              href="https://github.com/hsbrRahman/ts-my-todo-app/tree/master"
               target="_blank"
-              td={"underline"}
+              size={"xl"}
+              c={"black"}
             >
-              Github link
+              <FaGithub />
             </Anchor>
           </Flex>
         </Header>
